@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine Princess?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: white;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 90%;
+        }
+
+        img {
+            width: 220px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* Allows "Yes" to grow without breaking the layout */
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        #yesBtn {
+            background-color: #00c853;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #e94560;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainContainer">
+        <img id="displayImg" src="Luffy.png" alt="Luffy">
+        <h1 id="questionText">Will you be my Valentine?</h1>
+        
+        <div class="buttons">
+            <button id="yesBtn" onclick="celebrate()">Yes!</button>
+            <button id="noBtn" onclick="growYes()">Non.</button>
+        </div>
+    </div>
+
+    <script>
+        let yesSize = 1.1; // Starting scale
+        let clickCount = 0;
+
+        const phrases = [
+            "Non.",
+            "Alla?",
+            "Really sure??",
+            "Mablanch Lherba",
+            "Yak!",
+            "! Bye!",
+            ".. Fekry mzyan",
+            "Ar You under threat?",
+            "Gha Gouly you don t love me",
+        ];
+
+        function growYes() {
+            clickCount++;
+            
+            // 1. Make the Yes button bigger
+            const yesBtn = document.getElementById('yesBtn');
+            yesSize += 0.2; // Increases size by 40% each click
+            yesBtn.style.transform = `scale(${yesSize})`;
+            
+            // 2. Change the text of the Nah button
+            const noBtn = document.getElementById('noBtn');
+            const phraseIndex = Math.min(clickCount, phrases.length - 1);
+            noBtn.innerText = phrases[phraseIndex];
+
+            // 3. Optional: Move the buttons slightly to accommodate the growth
+            if (yesSize > 5) {
+                noBtn.style.display = 'none'; // Hide the no button if it gets too crazy
+            }
+        }
+
+        function celebrate() {
+            const container = document.getElementById('mainContainer');
+            container.innerHTML = `
+                <img src="Mrfoxheart.png">
+                <h1 style="color: #e94560;">You will be my forever valentine! ❤️❤️❤️❤️</h1>
+            `;
+        }
+    </script>
+</body>
+</html>
